@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  web:
+    image: portainer/portainer-ce:latest
+    networks:
+     - traefik-net
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+     - /opt/portainer/data:/data:ro
+    logging:
+     driver: json-file
+    deploy:
+      labels:
+        traefik.http.services.portainer.loadbalancer.server.port: '9000'
+        traefik.http.routers.portainer.rule: Host(`portainer.sillycat.com`)
+        traefik.enable: 'true'
+      placement:
+        constraints:
+         - node.role == manager
+networks:
+  traefik-net:
+    external: true
