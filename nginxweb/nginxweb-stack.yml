@@ -11,6 +11,8 @@ services:
         traefik.http.services.nginxweb.loadbalancer.server.port: '5000'
         traefik.http.routers.nginxweb.rule: Host(`nginxweb.sillycat.com`)
         traefik.enable: 'true'
+        traefik.constraint-label: traefik-net
+        traefik.docker.network: traefik-net
       placement:
         constraints:
          - node.role == worker
