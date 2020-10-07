@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    networks:
+     - traefik-net
+    logging:
+     driver: json-file
+    deploy:
+      labels:
+        traefik.http.services.nginxweb.loadbalancer.server.port: '5000'
+        traefik.http.routers.nginxweb.rule: Host(`nginxweb.sillycat.com`)
+        traefik.enable: 'true'
+      placement:
+        constraints:
+         - node.role == worker
+
