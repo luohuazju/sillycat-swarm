@@ -14,4 +14,7 @@ services:
       placement:
         constraints:
          - node.role == worker
+networks:
+  traefik-net:
+    external: true
 
