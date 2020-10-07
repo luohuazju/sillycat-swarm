@@ -25,7 +25,7 @@ services:
      - 80:80
     deploy:
       labels:
-        traefik.http.middlewares.traefik-auth.basicauth.users: 
+        traefik.http.middlewares.traefik-auth.basicauth.users: admin:$apr1$nRjvD8Mo$RoNV3IssxSKad0K9vSDjN1,user:$apr1$8hlxyJlg$SibCpgUpVq3/8M4nTeFPX1
         traefik.http.routers.traefikRouter.rule: Host(`traefik.sillycat.com`)
         traefik.http.routers.traefikRouter.entrypoints: web
         traefik.http.routers.traefikRouter.middlewares: traefik-auth
