@@ -6,7 +6,7 @@ services:
      - traefik-net
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock:ro
-     - /opt/portainer/data:/data:ro
+     - /opt/portainer/data:/data
     logging:
      driver: json-file
     deploy:
