@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  web:
+    image: registry:2
+    environment:
+      REGISTRY_HTTP_ADDR: "0.0.0.0:5000"
+      REGISTRY_HTTP_HOST: "http://registry.sillycat.com"
+    volumes:
+     - /opt/registry/data:/var/lib/registry
+     - /opt/registry/config/config.yml:/etc/docker/registry/config.yml
+    networks:
+     - traefik-net
+    logging:
+      driver: json-file
+    deploy:
+      labels:
+        traefik.http.routers.registry.rule: "Host(`registry.sillycat.com`)"
+        traefik.http.routers.registry.middlewares: "traefik-auth"
+        traefik.http.services.registry.loadbalancer.server.port: "5000"
+        traefik.enable: "true"
+      placement:
+        constraints:
+         - node.role == manager
+networks:
+  traefik-net:
+    external: true
