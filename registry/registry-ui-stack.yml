@@ -15,9 +15,9 @@ services:
       driver: json-file
     deploy:
       labels:
-        traefik.http.routers.registry.rule: "Host(`registry-ui.sillycat.com`)"
-        #traefik.http.routers.registry.middlewares: "traefik-auth"
-        traefik.http.services.registry.loadbalancer.server.port: "80"
+        traefik.http.routers.registryui.rule: "Host(`registry-ui.sillycat.com`)"
+        #traefik.http.routers.registryui.middlewares: "traefik-auth"
+        traefik.http.services.registryui.loadbalancer.server.port: "80"
         traefik.enable: "true"
       placement:
         constraints:
