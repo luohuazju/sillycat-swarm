@@ -29,7 +29,8 @@ services:
       NGINX_PROXY_HEADER_X_Forwarded_For: "$$proxy_add_x_forwarded_for"
       NGINX_PROXY_HEADER_Authorization: "Basic YWRtaW46MTIzNDU2"
       DELETE_IMAGES: "true"
-    depends_on: registry
+    depends_on: 
+     - registry
     volumes:
      - /opt/registry/config/nginx.env:/etc/nginx/.env 
     networks:
