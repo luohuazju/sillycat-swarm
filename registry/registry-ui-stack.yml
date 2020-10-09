@@ -1,9 +1,9 @@
 version: '3.8'
 services:
   web:
-    image: joxit/docker-registry-ui:latest
+    image: joxit/docker-registry-ui:static
     environment:
-      URL: "http://registry.sillycat.com"
+      REGISTRY_URL: "http://registry.sillycat.com"
       NGINX_PROXY_HEADER_X_Forwarded_For: "$$proxy_add_x_forwarded_for"
       NGINX_PROXY_HEADER_Authorization: "Basic YWRtaW46MTIzNDU2"
       DELETE_IMAGES: "true"
