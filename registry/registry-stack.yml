@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  registry:
+  app:
     image: registry:2
     environment:
       REGISTRY_HTTP_ADDR: "0.0.0.0:5000"
@@ -25,12 +25,12 @@ services:
     image: joxit/docker-registry-ui:static
     environment:
       REGISTRY_TITLE: "Sillycat Registry"
-      REGISTRY_URL: "http://registry:5000"
+      REGISTRY_URL: "http://app:5000"
       NGINX_PROXY_HEADER_X_Forwarded_For: "$$proxy_add_x_forwarded_for"
       NGINX_PROXY_HEADER_Authorization: "Basic YWRtaW46MTIzNDU2"
       DELETE_IMAGES: "true"
     depends_on: 
-     - registry
+     - app
     volumes:
      - /opt/registry/config/nginx.env:/etc/nginx/.env 
     networks:
